@@ -3,19 +3,202 @@
 @tailwind utilities;
 
 :root {
+  --primary: #474bff;
+  --primary-hover: #3238cc;
+  --secondary: #47d3ff;
   --background: #ffffff;
   --foreground: #171717;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --error: #ef4444;
+  --success: #22c55e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --gray-100: #1f2937;
+    --gray-200: #374151;
+    --gray-300: #4b5563;
+    --gray-400: #6b7280;
+    --gray-500: #9ca3af;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-[--primary] text-white hover:bg-[--primary-hover];
+  }
+
+  .btn-outline {
+    @apply border-2 border-[--primary] text-[--primary] hover:bg-[--primary] hover:text-white;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-[--gray-300] 
+    focus:outline-none focus:ring-2 focus:ring-[--primary] focus:border-transparent
+    bg-[--background] text-[--foreground];
+  }
+
+  .card {
+    @apply bg-[--background] rounded-xl shadow-lg p-6 border border-[--gray-200];
+  }
+}
+
+.custom-bg{
+  background-image: radial-gradient(circle at center center, #474bff, #47d3ff), repeating-radial-gradient(circle at center center, #474bff, #474bff, 32px, transparent 64px, transparent 32px);
+background-blend-mode: multiply;
+background-color: #47d3ff;
+position: absolute;
+opacity: 0.5;
+border-radius:50%;
+top:20%;
+right: -10%;
+z-index:0;
+}
+.bg-image{
+  z-index: 100;
+}
+.spinner {
+   position: absolute;
+   width: 14.1px;
+   height: 14.1px;
+}
+
+.spinner div {
+   position: absolute;
+   width: 50%;
+   height: 150%;
+   background: #474bff;
+   transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+   animation: spinner-fzua35 1.2s calc(var(--delay) * 1.2s) infinite ease;
+}
+
+.spinner div:nth-child(1) {
+   --delay: 0.12;
+   --rotation: 36;
+   --translation: 150;
+}
+
+.spinner div:nth-child(2) {
+   --delay: 0.24;
+   --rotation: 72;
+   --translation: 150;
+}
+
+.spinner div:nth-child(3) {
+   --delay: 0.36;
+   --rotation: 108;
+   --translation: 150;
+}
+
+.spinner div:nth-child(4) {
+   --delay: 0.48;
+   --rotation: 144;
+   --translation: 150;
+}
+
+.spinner div:nth-child(5) {
+   --delay: 0.6;
+   --rotation: 180;
+   --translation: 150;
+}
+
+.spinner div:nth-child(6) {
+   --delay: 0.72;
+   --rotation: 216;
+   --translation: 150;
+}
+
+.spinner div:nth-child(7) {
+   --delay: 0.84;
+   --rotation: 252;
+   --translation: 150;
+}
+
+.spinner div:nth-child(8) {
+   --delay: 0.96;
+   --rotation: 288;
+   --translation: 150;
+}
+
+.spinner div:nth-child(9) {
+   --delay: 1.08;
+   --rotation: 324;
+   --translation: 150;
+}
+
+.spinner div:nth-child(10) {
+   --delay: 1.2;
+   --rotation: 360;
+   --translation: 150;
+}
+
+@keyframes spinner-fzua35 {
+   0%, 10%, 20%, 30%, 50%, 60%, 70%, 80%, 90%, 100% {
+      transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+   }
+
+   50% {
+      transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
+   }
+}
+
+.spinner2 {
+   width: 56px;
+   height: 56px;
+   display: grid;
+   border-radius: 50%;
+   -webkit-mask: radial-gradient(farthest-side,#0000 40%,#474bff 41%);
+   background: linear-gradient(0deg ,rgba(71,75,255,0.5) 50%,rgba(71,75,255,1) 0) center/4.5px 100%,
+        linear-gradient(90deg,rgba(71,75,255,0.25) 50%,rgba(71,75,255,0.75) 0) center/100% 4.5px;
+   background-repeat: no-repeat;
+   animation: spinner-d3o0rx 1s infinite steps(12);
+   position:absolute;
+   top:34%;
+   left:5%;
+}
+
+.spinner2::before,
+.spinner2::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+
+.spinner2::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+
+@keyframes spinner-d3o0rx {
+   100% {
+      transform: rotate(1turn);
+   }
 }
